@@ -28,6 +28,16 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Password is required']
     },
+    role: {
+        type: String,
+        enum: ['client','tradeperson'],
+        required: [true, 'Role is required']
+    },
+    category: {
+        type: String,required:function(){
+            return this.role === 'tradeperson';
+        }
+    },
     refreshtoken: {
         type: String
     }
