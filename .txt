@@ -1,0 +1,31 @@
+Project Description:
+A unique and beautiful frontend. Don't copy from any figma file or anywhere.
+
+Technology For Frontend:
+React.js
+
+Technology For Backend:
+Node.js and Express.js
+
+Database:
+MongoDB
+
+Features:
+Basic Functionalities: Registration, Login, Logout, View Profile, Update Profile, Update Password
+
+Specific Functionalities For Trade Person: 
+1) Can apply for jobs only related to his category for example if a trade person register as an electrician then he will only see jobs of electrician category.
+2) Can chat with a client who posted the Job.
+
+Specific Functionalities For Client: 
+1) Can post new jobs.
+2) Can Delete Jobs.
+3) Can View all jobs posted by him.
+4) Can chat with all trade persons who applied for the job 
+
+
+//chat Functionalities
+
+ tradeperson Can chat with a client who posted the Job.
+ client Can chat with all trade persons who applied for the job 
+

@@ -1,4 +1,4 @@
-import { Job } from "../model/job.model";
+import { Job } from "../model/job.model.js";
 import { asynchandler } from "../utils/Asynchandler.js";
 import { Apiresponse } from "../utils/Apiresponse.js";
 import { Apierror } from "../utils/Apierror.js";
