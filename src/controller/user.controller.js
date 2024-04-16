@@ -75,7 +75,7 @@ const login = asynchandler(async (req, res) => {
         throw new Apierror(400,"password is incorrect")
     }
 
-    const {accesstoken , refreshtoken} = user.generateAccessTokenAndRefreshtoken(user._id)
+    const {accesstoken , refreshtoken} = await generateAccessTokenAndRefreshtoken(user._id)
 
     const loginUser = await User.findById(user._id).select("-password -refreshtoken")
 
