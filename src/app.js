@@ -18,7 +18,9 @@ app.use(cors({
 
 //routes import
 import userRouter from './route/user.route.js'
+import jobrouter from './route/job.route.js'
 
 // //routes declaration
 app.use("/api/v1/users",userRouter)
+app.use("/api/v1/jobs",jobrouter)
 export { app }

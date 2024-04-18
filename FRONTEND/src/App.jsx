@@ -7,13 +7,25 @@ import signin from './components/signin/signin'
 import signup from './components/signup/signup'
 import notfound from './components/notfound/notfound'
 import profile from './components/profile/profile'
+import TradePersonDashboard from './components/TradePersonDashboard/TradePersonDashboard'
+import ClientDashboard from './components/ClientDashboard/ClientDashboard'
+import { useSelector } from 'react-redux'
 function App() {
+  const authuser = useSelector((store) => store.user.authuser)
   return (
     <>
     <BrowserRouter>
     <Routes>
       <Route path="/" Component={home}/>
       <Route path="/about" Component={about}/>
+      {
+        authuser?.role === 'client' ? 
+        <Route path='/clientdashboard' Component={ClientDashboard}/> 
+        : 
+        <Route path='/tradepersondashboard' Component={TradePersonDashboard}/>
+      }
+      {/* <Route path='/tradepersondashboard' Component={TradePersonDashboard}/>
+      <Route path='/clientdashboard' Component={ClientDashboard}/> */}
       <Route path="/contact" Component={contact}/>
       <Route path="/login" Component={signin}/>
       <Route path="/signup" Component={signup}/>

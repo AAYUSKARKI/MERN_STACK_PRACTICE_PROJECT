@@ -1,17 +1,40 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {useSelector} from 'react-redux'
 
 
-function navbar() {
+function Navbar() {
+
+    const authuser = useSelector((store) => store.user.authuser)
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
-                </div>
-            </nav>
+          <div className="navbar flex w-full  justify-between items-center p-4">
+            <div className="flex items-center">
+            <h1 className="text-2xl font-bold text-green-500 ">Job Seeking APP</h1>
+            </div>
+            <div className="text-slate-700 flex justify-between items-center">
+                <ul className="flex gap-6">
+                    <li>Jobs</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                    {authuser && (authuser.role === 'tradeperson' ? (
+                        <li><Link to="/tradepersondashboard">Dashboard</Link></li>
+                    ) : (
+                        <li><Link to="/clientdashboard">Dashboard</Link></li>
+                    ))}
+                </ul>
+            </div>
+           <div className="flex gap-3">
+            {authuser && <button className=" rounded-md  border-black text-slate-700">Profile</button>}
+           {authuser && <button className=" rounded-md  border-black text-slate-700">Logout</button>}
+
+           {!authuser && <button className=" rounded-md  border-black text-slate-700">Sign Up</button>}
+            {!authuser && <button className=" rounded-md  border-black text-slate-700">Login</button>}
+           </div>
+          </div>
         </>
     )
 }
 
-export default navbar
+export default Navbar
