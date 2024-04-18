@@ -2,8 +2,12 @@ import { Job } from "../model/job.model.js";
 import { asynchandler } from "../utils/Asynchandler.js";
 import { Apiresponse } from "../utils/Apiresponse.js";
 import { Apierror } from "../utils/Apierror.js";
+import { uploadOnCloudinary } from "../utils/Cloudinary.js";
 
 const createJob = asynchandler(async (req, res) => {
+
+    console.log(req.file,"req.file")
+    console.log(req.body,"req.body")
     
     const { title, category, description, status } = req.body;
 
@@ -21,12 +25,26 @@ const createJob = asynchandler(async (req, res) => {
    if (existedjob) {
     throw new Apierror(400,"job already exists with this title or description")
     }
+
+    console.log(req.file.fieldname)
+    const thumbnaillocalpath = req.file?.path
+
+    if(!thumbnaillocalpath){
+        throw new Apierror(400,"thumbnail is required")
+    }
+
+    const thumbnail = await uploadOnCloudinary(thumbnaillocalpath)
     
+    if(!thumbnail){
+        throw new Apierror(400,"something went wrong while uploading thumbnail")
+    }
+
 
     const job = await Job.create({
         title,
         category,
         description,
+        thumbnail: thumbnail.url,
         status,
         client: req.user._id,
     })

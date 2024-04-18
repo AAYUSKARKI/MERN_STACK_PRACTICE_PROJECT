@@ -15,10 +15,12 @@ import {createJob,
     filterjobbyuserCategory,
     jobstats}
     from '../controller/job.controller.js'
+    import { upload } from "../middleware/multer.middleware.js";
+    
 
 const router = Router();
 
-router.route("/createjob").post(Verifyjwt,createJob);
+router.route("/createjob").post(Verifyjwt,upload.single("thumbnail"),createJob);
 router.route("/getalljobs").get(getalljobs);
 router.route("/getmyjobs").get(Verifyjwt,getmyjobs);
 router.route("/getonejob/:id").get(getonejob);

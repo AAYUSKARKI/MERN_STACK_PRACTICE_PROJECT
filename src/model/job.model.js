@@ -17,6 +17,10 @@ const jobSchema = new Schema({
         required: true,
         trim: true
     },
+    thumbnail: {
+        type: String,
+        required: true
+    },
     client: {
         type:mongoose.Schema.ObjectId,
         ref:"User",
