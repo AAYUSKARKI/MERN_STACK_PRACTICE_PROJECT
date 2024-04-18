@@ -16,38 +16,40 @@ function Createjob() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setJob({ ...job, [name]: value });
+    console.log(job, 'job');
   };
 
   const handleThumbnailChange = (e) => {
     setThumbnail(e.target.files[0]); // Set the selected thumbnail file
+    console.log(thumbnail,'thumbnail');
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-  
-    const formData = new FormData(); // Create FormData object
-    formData.append('thumbnail', thumbnail); // Append thumbnail file to FormData
-    formData.append('title', job.title); // Append job details to FormData
-    formData.append('category', job.category);
-    formData.append('description', job.description);
-    formData.append('status', job.status);
-  
-    console.log(formData); // Log formData to inspect its contents
-  
+    axios.defaults.withCredentials = true;
     try {
-      axios.defaults.withCredentials = true;
+      e.preventDefault();
+      setLoading(true);
       // Send request with formData
-      const response = await axios.post('http://localhost:8000/api/v1/jobs/createjob', formData, {
+      const response = await axios.post('http://localhost:8000/api/v1/jobs/createjob',
+        {
+        thumbnail,
+        title: job.title,
+        category: job.category,
+        description: job.description,
+        status: job.status
+      },
+       {
         headers: {
           Authorization: `Bearer ${Cookies.get('accesstoken')}`,
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/json'
         },
       });
       setLoading(false);
       console.log(response);
       toast.success(response.data.message);
-    } catch (error) {
+    } 
+    catch (error)
+     {
       console.error(error);
      toast.error(error.response.data.message);
     }
