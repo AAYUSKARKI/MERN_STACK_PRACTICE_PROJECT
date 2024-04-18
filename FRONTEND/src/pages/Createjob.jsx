@@ -12,7 +12,7 @@ function Createjob() {
     title: '',
     category: '',
     description: '',
-    status: ''
+    status: 'posted'
   });
 
   const handleChange = (e) => {
@@ -24,6 +24,7 @@ function Createjob() {
     try {
       e.preventDefault();
       setLoading(true);
+      axios.defaults.withCredentials = true;
       const response = await axios.post('http://localhost:8000/api/v1/jobs/createjob', job, {
         headers: {
           Authorization: `Bearer ${Cookies.get('accesstoken')}`

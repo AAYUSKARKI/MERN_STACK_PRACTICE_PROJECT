@@ -24,7 +24,7 @@ const jobSchema = new Schema({
     },
     status: {
         type: String,
-        enum:['posted',"inprogress"],
+        enum:['posted','inprogress'],
         default:'posted'
     },
     applicants: [
