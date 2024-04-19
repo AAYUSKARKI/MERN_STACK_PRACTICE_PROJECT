@@ -10,6 +10,8 @@ import profile from './components/profile/profile'
 import TradePersonDashboard from './components/TradePersonDashboard/TradePersonDashboard'
 import ClientDashboard from './components/ClientDashboard/ClientDashboard'
 import { useSelector } from 'react-redux'
+import Fetchjobs from './pages/fetchjobs'
+import Job from './pages/job'
 function App() {
   const authuser = useSelector((store) => store.user.authuser)
   return (
@@ -30,6 +32,8 @@ function App() {
       <Route path="/login" Component={signin}/>
       <Route path="/signup" Component={signup}/>
       <Route path="/profile" Component={profile}/>
+      <Route path='/getalljobs' Component={Fetchjobs}/>
+      <Route path='/jobs/:id' Component={Job}/>
       <Route path='*' Component={notfound}/>
     </Routes>  
     </BrowserRouter>
