@@ -6,6 +6,7 @@ import { uploadOnCloudinary } from "../utils/Cloudinary.js";
 
 const createJob = asynchandler(async (req, res) => {
 
+    console.log('req body is here', req)
     console.log(req.file,"req.file")
     console.log(req.body,"req.body")
     
@@ -26,7 +27,7 @@ const createJob = asynchandler(async (req, res) => {
     throw new Apierror(400,"job already exists with this title or description")
     }
 
-    console.log(req.file.fieldname)
+    console.log(req.file)
     const thumbnaillocalpath = req.file?.path
 
     if(!thumbnaillocalpath){

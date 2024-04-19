@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -16,42 +16,62 @@ function Createjob() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setJob({ ...job, [name]: value });
-    console.log(job, 'job');
   };
 
   const handleThumbnailChange = (e) => {
-    setThumbnail(e.target.files[0]); // Set the selected thumbnail file
-    console.log(thumbnail,'thumbnail');
+    setThumbnail(e.target.files[0]);  // Set the selected thumbnail file
   };
 
+  useEffect(() => {
+    console.log(thumbnail, 'is the thumbnail');
+  }, [thumbnail]);
+
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    
+    // const requestData = {
+    //   thumbnail: thumbnail,
+    //   title: job.title,
+    //   category: job.category,
+    //   description: job.description,
+    //   status: job.status
+    // };
+
+    // console.log(requestData,'is the requestdata')
+
+
+    const formData = new FormData();
+    formData.append('thumbnail', thumbnail); 
+    formData.append('title', job.title);
+    formData.append('category', job.category);
+    formData.append('description', job.description);
+    formData.append('status', job.status);
+
+    console.log('form data is here', formData);
+
     axios.defaults.withCredentials = true;
+
+
+
     try {
-      e.preventDefault();
-      setLoading(true);
-      // Send request with formData
-      const response = await axios.post('http://localhost:8000/api/v1/jobs/createjob',
+      const response = await axios.post(
+        'http://localhost:8000/api/v1/jobs/createjob',
+        formData,
         {
-        thumbnail,
-        title: job.title,
-        category: job.category,
-        description: job.description,
-        status: job.status
-      },
-       {
-        headers: {
-          Authorization: `Bearer ${Cookies.get('accesstoken')}`,
-          'Content-Type': 'application/json'
-        },
-      });
+          headers: {
+            Authorization: `Bearer ${Cookies.get('accesstoken')}`,
+            // 'Content-Type': 'application/json;charset=UTF-8',
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
       setLoading(false);
-      console.log(response);
       toast.success(response.data.message);
-    } 
-    catch (error)
-     {
+    } catch (error) {
+      setLoading(false);
       console.error(error);
-     toast.error(error.response.data.message);
+      toast.error(error.message);
     }
   };
 
