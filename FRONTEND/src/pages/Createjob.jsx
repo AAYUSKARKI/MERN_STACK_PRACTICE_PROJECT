@@ -48,7 +48,7 @@ function Createjob() {
     formData.append('description', job.description);
     formData.append('status', job.status);
 
-    console.log('form data is here', formData);
+
 
     axios.defaults.withCredentials = true;
 
@@ -66,6 +66,7 @@ function Createjob() {
           },
         }
       );
+      console.log('Request successful, setting loading to false');
       setLoading(false);
       toast.success(response.data.message);
     } catch (error) {

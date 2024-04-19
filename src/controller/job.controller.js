@@ -6,9 +6,8 @@ import { uploadOnCloudinary } from "../utils/Cloudinary.js";
 
 const createJob = asynchandler(async (req, res) => {
 
-    console.log('req body is here', req)
-    console.log(req.file,"req.file")
-    console.log(req.body,"req.body")
+    // console.log(req.file,"req.file")
+   
     
     const { title, category, description, status } = req.body;
 
