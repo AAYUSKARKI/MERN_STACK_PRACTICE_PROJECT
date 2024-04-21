@@ -12,6 +12,8 @@ import ClientDashboard from './components/ClientDashboard/ClientDashboard'
 import { useSelector } from 'react-redux'
 import Fetchjobs from './pages/fetchjobs'
 import Job from './pages/job'
+import Getaplliedjobs from './components/getappliedjobs/getaplliedjobs'
+import FilteredJobs from './pages/filterJobs'
 function App() {
   const authuser = useSelector((store) => store.user.authuser)
   return (
@@ -34,11 +36,15 @@ function App() {
       <Route path="/profile" Component={profile}/>
       <Route path='/getalljobs' Component={Fetchjobs}/>
       <Route path='/jobs/:id' Component={Job}/>
+      <Route path='/getappliedjobs' Component={Getaplliedjobs}/>
+      <Route path='/filteredjobs' Component={FilteredJobs}/>
       <Route path='*' Component={notfound}/>
     </Routes>  
     </BrowserRouter>
     </>
   )
 }
+
+
 
 export default App

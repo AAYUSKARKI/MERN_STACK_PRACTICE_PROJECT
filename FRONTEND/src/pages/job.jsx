@@ -1,5 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 function Job() {
 
@@ -7,7 +9,29 @@ function Job() {
 
     const {jobs} = useSelector(state => state.job)
 
+    const handleSubmit = async(e) => {
 
+        e.preventDefault()
+        try {
+          
+          axios.defaults.withCredentials = true
+          const response = await axios.post(`http://localhost:8000/api/v1/jobs/applyjob/${id}`)
+          
+          toast.success(response.data.message)
+
+          console.log('response', response)
+          
+
+        } catch (error) {
+
+          toast.error(error?.response?.data?.message)
+
+          console.log('error', error)
+
+          
+        }
+        
+    }
     
 
 
@@ -24,6 +48,8 @@ function Job() {
         <img src={job.thumbnail} />
     </div>
 ))}
+
+<button type='submit' onClick={handleSubmit}>ApplyNOW</button>
     </>
   )
 }

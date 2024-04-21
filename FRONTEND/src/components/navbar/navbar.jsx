@@ -1,4 +1,5 @@
 import React from "react";
+import Cookie from 'js-cookie'
 import { Link } from "react-router-dom";
 import {useSelector} from 'react-redux'
 
@@ -6,6 +7,10 @@ import {useSelector} from 'react-redux'
 function Navbar() {
 
     const authuser = useSelector((store) => store.user.authuser)
+
+    const cookie = Cookie.get('accesstoken')
+
+    console.log('cookie', cookie)
 
     return (
         <>
@@ -26,11 +31,11 @@ function Navbar() {
                 </ul>
             </div>
            <div className="flex gap-3">
-            {authuser && <button className=" rounded-md  border-black text-slate-700">Profile</button>}
-           {authuser && <button className=" rounded-md  border-black text-slate-700">Logout</button>}
+            { cookie && authuser && <button className=" rounded-md  border-black text-slate-700">Profile</button>}
+           {cookie && authuser && <button className=" rounded-md  border-black text-slate-700">Logout</button>}
 
-           {!authuser && <button className=" rounded-md  border-black text-slate-700">Sign Up</button>}
-            {!authuser && <button className=" rounded-md  border-black text-slate-700">Login</button>}
+           {!authuser || !cookie && <button className=" rounded-md  border-black text-slate-700">Sign Up</button>}
+            {!authuser || !cookie && <button className=" rounded-md  border-black text-slate-700">Login</button>}
            </div>
           </div>
         </>
