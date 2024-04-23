@@ -20,9 +20,9 @@ function Navbar() {
             </div>
             <div className="text-slate-700 flex justify-between items-center">
                 <ul className="flex gap-6">
-                    <li>Jobs</li>
-                    <li>About</li>
-                    <li>Contact</li>
+                    <li><Link to="/getalljobs">Jobs </Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
                     {authuser && (authuser.role === 'tradeperson' ? (
                         <li><Link to="/tradepersondashboard">Dashboard</Link></li>
                     ) : (
@@ -31,11 +31,11 @@ function Navbar() {
                 </ul>
             </div>
            <div className="flex gap-3">
-            { cookie && authuser && <button className=" rounded-md  border-black text-slate-700">Profile</button>}
+            { cookie && authuser && <button className=" rounded-md  border-black text-slate-700"><Link to="/profile">Profile</Link></button>}
            {cookie && authuser && <button className=" rounded-md  border-black text-slate-700">Logout</button>}
 
-           {!authuser || !cookie && <button className=" rounded-md  border-black text-slate-700">Sign Up</button>}
-            {!authuser || !cookie && <button className=" rounded-md  border-black text-slate-700">Login</button>}
+           {!authuser || !cookie && <button className=" rounded-md  border-black text-slate-700"><Link to="/signup">Sign Up</Link></button>}
+            {!authuser || !cookie && <button className=" rounded-md  border-black text-slate-700"><Link to="/login">Login</Link></button>}
            </div>
           </div>
         </>
