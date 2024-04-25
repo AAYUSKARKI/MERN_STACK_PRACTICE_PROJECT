@@ -20,19 +20,19 @@ import {createJob,
 
 const router = Router();
 
-router.route("/createjob").post(Verifyjwt,upload.single("thumbnail"),createJob);
-router.route("/getalljobs").get(getalljobs);
-router.route("/getmyjobs").get(Verifyjwt,getmyjobs);
-router.route("/getonejob/:id").get(getonejob);
-router.route("/updatejob/:id").patch(Verifyjwt,updatejob);
-router.route("/deletejob/:id").delete(Verifyjwt,deletejob);
-router.route("/applyjob/:id").post(Verifyjwt,applyjob);
-router.route("/getappliedjobs").get(Verifyjwt,getappliedjobs);
-router.route("/searchjobs/?:query").get(searchjobs);
-router.route("/getinprogressjobs").get(Verifyjwt,getinprogressjobs);
-router.route("/getcompletedjobs").get(Verifyjwt,getcompletedjobs);
-router.route("/filterjob/:category").get(Verifyjwt,filterjob);
-router.route("/filterjobbyuserCategory").post(Verifyjwt,filterjobbyuserCategory);
-router.route("/jobstats").get(Verifyjwt,jobstats);
+router.route("/createjob").post(Verifyjwt,upload.single("thumbnail"),createJob);//done
+router.route("/getalljobs").get(getalljobs);//done
+router.route("/getmyjobs").get(Verifyjwt,getmyjobs);//done
+router.route("/getonejob/:id").get(getonejob);//done
+router.route("/updatejob/:id").patch(Verifyjwt,updatejob);//done
+router.route("/deletejob/:id").delete(Verifyjwt,deletejob);//done
+router.route("/applyjob/:id").post(Verifyjwt,applyjob);//done
+router.route("/getappliedjobs").get(Verifyjwt,getappliedjobs);//done
+router.route("/searchjobs/?:query").get(searchjobs);//done
+router.route("/getinprogressjobs").get(Verifyjwt,getinprogressjobs);//soon
+router.route("/getcompletedjobs").get(Verifyjwt,getcompletedjobs);//soon
+router.route("/filterjob/:category").get(Verifyjwt,filterjob);//done
+router.route("/filterjobbyuserCategory").post(Verifyjwt,filterjobbyuserCategory);//soon
+router.route("/jobstats").get(Verifyjwt,jobstats);//soon
 
 export default router

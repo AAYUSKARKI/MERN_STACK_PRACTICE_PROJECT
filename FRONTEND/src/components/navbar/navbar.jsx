@@ -10,7 +10,7 @@ function Navbar() {
 
     const cookie = Cookie.get('accesstoken')
 
-    console.log('cookie', cookie)
+    // console.log('cookie', cookie)
 
     return (
         <>

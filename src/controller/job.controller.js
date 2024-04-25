@@ -98,6 +98,8 @@ const createJob = asynchandler(async (req, res) => {
         
         const { title, category, description, status } = req.body;
 
+        console.log(req.body,"req.body")
+
         if (!title || !category || !description ) {
             throw new Apierror(400,"all fields are required")
         }

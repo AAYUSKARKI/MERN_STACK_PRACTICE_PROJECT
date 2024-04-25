@@ -1,8 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function TradePersonDashboard() {
   return (
-    <div>TradePersonDashboard</div>
+    <>
+    <div className='bg-slate-700'><Link to='/getappliedjobs'>View Applied Jobs</Link></div>
+    </>
   )
 }
 
