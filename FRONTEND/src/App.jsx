@@ -18,6 +18,7 @@ import Getpostedjobs from './pages/Myjobs'
 import Updatejob from './pages/Updatefrom'
 import DashboardTable from './components/DashboardTable/DashboardTable'
 import Createjob from './pages/Createjob'
+import Chatbox from './pages/Chatbox'
 function App() {
   const authuser = useSelector((store) => store.user.authuser)
   return (
@@ -46,6 +47,7 @@ function App() {
       <Route path= '/updatejobs/:id' Component={Updatejob}/>
       <Route path='/dashboard' Component={DashboardTable}/>
       <Route path='/createjobs' Component={Createjob}/>
+      <Route path='/chat' Component={Chatbox}/>
       <Route path='*' Component={notfound}/>
     </Routes>  
     </BrowserRouter>

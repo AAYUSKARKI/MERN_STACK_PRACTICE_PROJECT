@@ -51,7 +51,7 @@ function Home() {
         </div>
       </div> 
 
-      <div>
+      <div className="container h-screen">
         <form onSubmit={handleSubmit}>
           <label htmlFor="message">Message</label>
           <input type="text" id="message" value={message} onChange={(e) => setMessage(e.target.value)} />
